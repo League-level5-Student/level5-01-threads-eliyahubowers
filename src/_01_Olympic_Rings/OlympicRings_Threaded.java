@@ -1,5 +1,7 @@
 package _01_Olympic_Rings;
 
+import java.util.ArrayList;
+
 import org.jointheleague.graphical.robot.Robot;
 
 public class OlympicRings_Threaded {
@@ -11,23 +13,43 @@ public class OlympicRings_Threaded {
 		Robot simmy = new Robot(830, 410);
 		Robot staimmy = new Robot(1040, 200);
 		
-		timmy.setSpeed(10);
-		tammy.setSpeed(10);
-		sammy.setSpeed(10);
-		simmy.setSpeed(10);
-		staimmy.setSpeed(10);
+		timmy.setSpeed(100);
+		tammy.setSpeed(100);
+		sammy.setSpeed(100);
+		simmy.setSpeed(100);
+		staimmy.setSpeed(100);
 		
-		Thread r1 = new Thread(()->timmy.move(100));
-		Thread r2 = new Thread(()->tammy.move(100));
-		Thread r3 = new Thread(()->sammy.move(100));
-		Thread r4 = new Thread(()->simmy.move(100));
-		Thread r5 = new Thread(()->staimmy.move(100));
+		timmy.penDown();
+		tammy.penDown();
+		sammy.penDown();
+		simmy.penDown();
+		staimmy.penDown();
 		
-		r1.start();
-		r2.start();
-		r3.start();
-		r4.start();
-		r5.start();
+		Thread r1a = new Thread(()->timmy.move(3));
+		Thread r2a = new Thread(()->tammy.move(3));
+		Thread r3a = new Thread(()->sammy.move(3));
+		Thread r4a = new Thread(()->simmy.move(3));
+		Thread r5a = new Thread(()->staimmy.move(3));
+		
+		Thread r1b = new Thread(()->timmy.turn(1));
+		Thread r2b = new Thread(()->tammy.turn(1));
+		Thread r3b = new Thread(()->sammy.turn(1));
+		Thread r4b = new Thread(()->simmy.turn(1));
+		Thread r5b = new Thread(()->staimmy.turn(1));
+		
+		for(int i = 0; i < 100; i++) {
+			r1a.run();
+			r1b.run();
+			r2a.run();
+			r2b.run();
+			r3a.run();
+			r3b.run();
+			r4a.run();
+			r4b.run();
+			r5a.run();
+			r5b.run();			
+		}
+		
 	}
 }
 
