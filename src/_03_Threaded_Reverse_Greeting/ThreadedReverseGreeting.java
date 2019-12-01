@@ -7,4 +7,15 @@ public class ThreadedReverseGreeting {
   //but you should structure your program such that the threads print their greetings in reverse order.
 	
 	/* HINT: You will most likely need to do this with recursion */
+	public static void main(String[] args) {
+		run(1);
+	}
+	
+	static void run(int i) {
+		if(i < 50) {
+			Thread run = new Thread(()->run(i+1));
+			run.run();
+		}
+		System.out.println("Hello from Thread " + i + "!");
+	}
 }

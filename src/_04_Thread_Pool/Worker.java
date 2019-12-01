@@ -1,12 +1,19 @@
 package _04_Thread_Pool;
 
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Worker implements Runnable {
 
-	@Override
+	ConcurrentLinkedQueue<Task> tasks;
+	
+	Worker(ConcurrentLinkedQueue<Task> tasks){
+		this.tasks = tasks;
+	}
+	
 	public void run() {
-		// TODO Auto-generated method stub
-		
+		while(tasks.isEmpty() == false) {
+			tasks.remove().preform();
+		}
 	}
 
 
