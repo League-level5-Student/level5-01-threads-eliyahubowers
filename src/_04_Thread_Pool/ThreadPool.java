@@ -8,8 +8,11 @@ public class ThreadPool {
 	ConcurrentLinkedQueue<Task> tasks;
 	
 	ThreadPool(int numThreads){
+		
 		threads = new Thread[numThreads];
+		
 		tasks = new ConcurrentLinkedQueue<Task>();
+		
 		for(int i = 0; i < threads.length; i++) {
 			threads[i] = new Thread(()-> new Worker(tasks)); 
 		}
@@ -25,7 +28,6 @@ public class ThreadPool {
 			try {
 				threads[i].join();
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
